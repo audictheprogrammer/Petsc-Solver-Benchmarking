@@ -1,0 +1,81 @@
+FICHIER: 1138_bus.mtx
+############# MUMPS LU ##############
+M: 1138, N: 1138, nnz: 2596
+total: nonzeros=24180, allocated nonzeros=24180
+total: nonzeros=4054, allocated nonzeros=4054
+Norm of error 6.09739e-11, Iterations 1
+Time (sec):           3.643e-01     1.000   3.643e-01
+MatSolve               2 1.0 7.1559e-03 1.0 9.22e+04 1.0 0.0e+00 0.0e+00 0.0e+00  2 72  0  0  0   2 72  0  0  0    13
+MatLUFactorSym         1 1.0 7.8948e-02 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00 22  0  0  0  0  22  0  0  0  0     0
+MatLUFactorNum         1 1.0 1.6890e-02 1.0 9.40e+02 1.0 0.0e+00 0.0e+00 0.0e+00  5  1  0  0  0   5  1  0  0  0     0
+############# MUMPS Cho #############
+M: 1138, N: 1138, nnz: 2596
+total: nonzeros=12659, allocated nonzeros=12659
+total: nonzeros=4054, allocated nonzeros=4054
+Norm of error 7.64738e-11, Iterations 1
+Time (sec):           3.947e-01     1.000   3.947e-01
+MatSolve               2 1.0 9.3850e-03 1.0 4.61e+04 1.0 0.0e+00 0.0e+00 0.0e+00  2 57  0  0  0   2 57  0  0  0     5
+MatCholFctrSym         1 1.0 7.4494e-02 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00 19  0  0  0  0  19  0  0  0  0     0
+MatCholFctrNum         1 1.0 1.4913e-02 1.0 5.89e+02 1.0 0.0e+00 0.0e+00 0.0e+00  4  1  0  0  0   4  1  0  0  0     0
+############# SuperLU LU ############
+M: 1138, N: 1138, nnz: 2596
+total: nonzeros=0, allocated nonzeros=0
+SuperLU run parameters:
+total: nonzeros=4054, allocated nonzeros=4054
+Norm of error 1.81161e-10, Iterations 1
+Time (sec):           2.179e-01     1.000   2.179e-01
+MatSolve               2 1.0 1.3340e-04 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0
+MatLUFactor            1 1.0 1.6174e-03 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  1  0  0  0  0   1  0  0  0  0     0
+############ Strumpack LU ###########
+M: 1138, N: 1138, nnz: 2596
+total: nonzeros=0, allocated nonzeros=0
+total: nonzeros=4054, allocated nonzeros=4054
+Norm of error 6.19828e-11, Iterations 1
+Time (sec):           2.262e-01     1.000   2.262e-01
+MatSolve               2 1.0 9.2000e-04 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0
+MatLUFactor            1 1.0 3.7091e-02 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00 16  0  0  0  0  16  0  0  0  0     0
+########### SuiteSparse LU ##########
+M: 1138, N: 1138, nnz: 2596
+total: nonzeros=0, allocated nonzeros=0
+total: nonzeros=4054, allocated nonzeros=4054
+Norm of error 8.99435e-11, Iterations 1
+Time (sec):           2.118e-01     1.000   2.118e-01
+MatSolve               2 1.0 2.8776e-03 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  1  0  0  0  0   1  0  0  0  0     0
+MatLUFactorSym         1 1.0 6.7740e-04 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0
+MatLUFactorNum         1 1.0 4.6862e-03 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  2  0  0  0  0   2  0  0  0  0     0
+########### SuiteSparse Cho #########
+M: 1138, N: 1138, nnz: 2596
+total: nonzeros=3265, allocated nonzeros=3265
+total: nonzeros=4054, allocated nonzeros=4054
+Norm of error 7.49487e-11, Iterations 1
+Time (sec):           2.269e-01     1.000   2.269e-01
+MatSolve               2 1.0 1.9099e-03 1.0 2.61e+04 1.0 0.0e+00 0.0e+00 0.0e+00  1 37  0  0  0   1 37  0  0  0    14
+MatCholFctrSym         1 1.0 3.1567e-03 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  1  0  0  0  0   1  0  0  0  0     0
+MatCholFctrNum         1 1.0 1.5910e-04 1.0 1.09e+04 1.0 0.0e+00 0.0e+00 0.0e+00  0 15  0  0  0   0 15  0  0  0    69
+########### SuiteSparse QR ##########
+M: 1138, N: 1138, nnz: 2596
+total: nonzeros=9002, allocated nonzeros=9002
+total: nonzeros=4054, allocated nonzeros=4054
+Norm of error 1.394e-10, Iterations 1
+Time (sec):           2.019e-01     1.000   2.019e-01
+MatSolve               2 1.0 8.1140e-04 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0
+MatQRFactorSym         1 1.0 7.2369e-03 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  4  0  0  0  0   4  0  0  0  0     0
+MatQRFactorNum         1 1.0 6.7680e-04 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0
+############## Petsc LU #############
+M: 1138, N: 1138, nnz: 2596
+total: nonzeros=11730, allocated nonzeros=11730
+total: nonzeros=4054, allocated nonzeros=4054
+Norm of error 9.55287e-11, Iterations 1
+Time (sec):           2.340e-01     1.000   2.340e-01
+MatSolve               2 1.0 5.2900e-05 1.0 4.46e+04 1.0 0.0e+00 0.0e+00 0.0e+00  0 16  0  0  0   0 16  0  0  0   844
+MatLUFactorSym         1 1.0 2.9420e-04 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0
+MatLUFactorNum         1 1.0 2.3440e-04 1.0 1.98e+05 1.0 0.0e+00 0.0e+00 0.0e+00  0 71  0  0  0   0 71  0  0  0   845
+############## Petsc Cho #############
+M: 1138, N: 1138, nnz: 2596
+total: nonzeros=6434, allocated nonzeros=6434
+total: nonzeros=4054, allocated nonzeros=4054
+Norm of error 7.69126e-11, Iterations 1
+Time (sec):           2.011e-01     1.000   2.011e-01
+MatSolve               2 1.0 3.5643e-03 1.0 4.46e+04 1.0 0.0e+00 0.0e+00 0.0e+00  2 56  0  0  0   2 56  0  0  0    13
+MatCholFctrSym         1 1.0 2.8220e-04 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0
+MatCholFctrNum         1 1.0 1.6480e-04 1.0 1.14e+03 1.0 0.0e+00 0.0e+00 0.0e+00  0  1  0  0  0   0  1  0  0  0     7

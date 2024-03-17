@@ -1,0 +1,90 @@
+FICHIER: bcsstk17.mtx
+############# MUMPS LU ##############
+M: 10974, N: 10974, nnz: 219812
+package used to perform factorization: mumps
+total: nonzeros=2456418, allocated nonzeros=2456418
+total: nonzeros=428650, allocated nonzeros=428650
+Norm of error 5.44022e-11, Iterations 1
+Time (sec):           2.206e+00     1.000   2.206e+00
+MatSolve               2 1.0 1.4540e-02 1.0 9.78e+06 1.0 0.0e+00 0.0e+00 0.0e+00  1 68  0  0  0   1 68  0  0  0   673
+MatLUFactorSym         1 1.0 1.2274e-01 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  6  0  0  0  0   6  0  0  0  0     0
+MatLUFactorNum         1 1.0 1.8049e-01 1.0 2.73e+06 1.0 0.0e+00 0.0e+00 0.0e+00  8 19  0  0  0   8 19  0  0  0    15
+############# MUMPS Cho #############
+M: 10974, N: 10974, nnz: 219812
+package used to perform factorization: mumps
+total: nonzeros=1238104, allocated nonzeros=1238104
+total: nonzeros=428650, allocated nonzeros=428650
+Norm of error 9.12008e-11, Iterations 1
+Time (sec):           2.042e+00     1.000   2.042e+00
+MatSolve               2 1.0 2.1475e-02 1.0 4.91e+06 1.0 0.0e+00 0.0e+00 0.0e+00  1 60  0  0  0   1 60  0  0  0   229
+MatCholFctrSym         1 1.0 1.3089e-01 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  6  0  0  0  0   6  0  0  0  0     0
+MatCholFctrNum         1 1.0 1.5116e-01 1.0 1.38e+06 1.0 0.0e+00 0.0e+00 0.0e+00  7 17  0  0  0   7 17  0  0  0     9
+############# SuperLU LU ############
+M: 10974, N: 10974, nnz: 219812
+package used to perform factorization: superlu
+total: nonzeros=0, allocated nonzeros=0
+SuperLU run parameters:
+total: nonzeros=428650, allocated nonzeros=428650
+Norm of error 8.66171e-11, Iterations 1
+Time (sec):           2.032e+00     1.000   2.032e+00
+MatSolve               2 1.0 2.1430e-02 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  1  0  0  0  0   1  0  0  0  0     0
+MatLUFactor            1 1.0 4.0411e-01 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00 20  0  0  0  0  20  0  0  0  0     0
+############ Strumpack LU ###########
+M: 10974, N: 10974, nnz: 219812
+package used to perform factorization: strumpack
+total: nonzeros=0, allocated nonzeros=0
+total: nonzeros=428650, allocated nonzeros=428650
+Norm of error 2.39435e-10, Iterations 1
+Time (sec):           2.143e+00     1.000   2.143e+00
+MatSolve               2 1.0 8.4415e-03 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0
+MatLUFactor            1 1.0 2.9808e-01 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00 14  0  0  0  0  14  0  0  0  0     0
+########### SuiteSparse LU ##########
+M: 10974, N: 10974, nnz: 219812
+package used to perform factorization: umfpack
+total: nonzeros=0, allocated nonzeros=0
+total: nonzeros=428650, allocated nonzeros=428650
+Norm of error 8.5205e-11, Iterations 1
+Time (sec):           1.842e+00     1.000   1.842e+00
+MatSolve               2 1.0 1.0891e-02 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  1  0  0  0  0   1  0  0  0  0     0
+MatLUFactorSym         1 1.0 1.5542e-02 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  1  0  0  0  0   1  0  0  0  0     0
+MatLUFactorNum         1 1.0 1.8226e-01 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00 10  0  0  0  0  10  0  0  0  0     0
+########### SuiteSparse Cho #########
+M: 10974, N: 10974, nnz: 219812
+package used to perform factorization: cholmod
+total: nonzeros=1043601, allocated nonzeros=1043601
+total: nonzeros=428650, allocated nonzeros=428650
+Norm of error 1.06056e-10, Iterations 1
+Time (sec):           2.240e+00     1.000   2.240e+00
+MatSolve               2 1.0 1.0846e-02 1.0 8.35e+06 1.0 0.0e+00 0.0e+00 0.0e+00  0  5  0  0  0   0  5  0  0  0   770
+MatCholFctrSym         1 1.0 3.5024e-02 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  2  0  0  0  0   2  0  0  0  0     0
+MatCholFctrNum         1 1.0 8.3120e-02 1.0 1.57e+08 1.0 0.0e+00 0.0e+00 0.0e+00  4 94  0  0  0   4 94  0  0  0  1893
+########### SuiteSparse QR ##########
+M: 10974, N: 10974, nnz: 219812
+package used to perform factorization: spqr
+total: nonzeros=3095965, allocated nonzeros=3095965
+total: nonzeros=428650, allocated nonzeros=428650
+Norm of error 7.40947e-09, Iterations 1
+Time (sec):           3.228e+00     1.000   3.228e+00
+MatSolve               2 1.0 7.9115e-02 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  2  0  0  0  0   2  0  0  0  0     0
+MatQRFactorSym         1 1.0 7.4364e-02 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  2  0  0  0  0   2  0  0  0  0     0
+MatQRFactorNum         1 1.0 9.7587e-01 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00 30  0  0  0  0  30  0  0  0  0     0
+############## Petsc LU #############
+M: 10974, N: 10974, nnz: 219812
+package used to perform factorization: petsc
+total: nonzeros=2966252, allocated nonzeros=2966252
+total: nonzeros=428650, allocated nonzeros=428650
+Norm of error 2.38356e-10, Iterations 1
+Time (sec):           2.326e+00     1.000   2.326e+00
+MatSolve               2 1.0 7.6768e-03 1.0 1.18e+07 1.0 0.0e+00 0.0e+00 0.0e+00  0  2  0  0  0   0  2  0  0  0  1543
+MatLUFactorSym         1 1.0 4.4610e-02 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  2  0  0  0  0   2  0  0  0  0     0
+MatLUFactorNum         1 1.0 3.1197e-01 1.0 7.11e+08 1.0 0.0e+00 0.0e+00 0.0e+00 13 98  0  0  0  13 98  0  0  0  2280
+############## Petsc Cho #############
+M: 10974, N: 10974, nnz: 219812
+package used to perform factorization: petsc
+total: nonzeros=1488613, allocated nonzeros=1488613
+total: nonzeros=428650, allocated nonzeros=428650
+Norm of error 8.66133e-10, Iterations 1
+Time (sec):           2.497e+00     1.000   2.497e+00
+MatSolve               2 1.0 1.7647e-02 1.0 1.18e+07 1.0 0.0e+00 0.0e+00 0.0e+00  1 86  0  0  0   1 86  0  0  0   671
+MatCholFctrSym         1 1.0 3.5681e-01 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00 14  0  0  0  0  14  0  0  0  0     0
+MatCholFctrNum         1 1.0 1.7060e-01 1.0 1.10e+04 1.0 0.0e+00 0.0e+00 0.0e+00  7  0  0  0  0   7  0  0  0  0     0
