@@ -1,15 +1,5 @@
 static char help[] = "Loads a MTX matrix then solves a linear system with KSP.\n\n";
 
-/*
-  Include "petscksp.h" so that we can use KSP solvers.  Note that this file
-  automatically includes:
-     petscsys.h    - base PETSc routines   petscvec.h - vectors
-     petscmat.h    - matrices              petscpc.h  - preconditioners
-     petscis.h     - index sets
-     petscviewer.h - viewers
-
-  Note:  The corresponding parallel example is ex23.c
-*/
 #include <petsc.h>
 #include "mmloader.h"
 
@@ -17,6 +7,7 @@ static char help[] = "Loads a MTX matrix then solves a linear system with KSP.\n
 export wPETSC_DIR=/mnt/c/Users/audic/petsc/share/petsc/datafiles/matrices/MYMAT
 export wPETSC_DIR=/mnt/c/Users/xu/petsc/share/petsc/datafiles/matrices/MYMAT
 ./ex72 -fin ${wPETSC_DIR}/1138_bus.mtx petscmat.aij -aij_only -pc_type lu -pc_factor_mat_solver_type mumps -memory_view -log_view -ksp_view
+./ex72 -fin ${wPETSC_DIR}/cvxbqp1.mtx petscmat.aij -aij_only -pc_type lu -pc_factor_mat_solver_type mumps -memory_view -log_view -ksp_view> TEST1.txt
 */
 
 int main(int argc, char **args)
@@ -35,7 +26,7 @@ int main(int argc, char **args)
   char        filein[PETSC_MAX_PATH_LEN];
   char        ordering[256] = MATORDERINGRCM;
   // PetscViewer view;
-  PetscBool   flag, symmetric = PETSC_FALSE, aijonly = PETSC_FALSE, permute = PETSC_FALSE;
+  PetscBool   flag, aijonly = PETSC_FALSE, permute = PETSC_FALSE;
   IS          rowperm = NULL, colperm = NULL;
 
   PetscMPIInt size;
@@ -43,7 +34,7 @@ int main(int argc, char **args)
   PetscFunctionBeginUser;
   PetscCall(PetscInitialize(&argc, &args, (char *)0, help));
   PetscCallMPI(MPI_Comm_size(PETSC_COMM_WORLD, &size));
-  // PetscCheck(size == 1, PETSC_COMM_WORLD, PETSC_ERR_WRONG_MPI_SIZE, "This is a uniprocessor example only!");
+  PetscCheck(size == 1, PETSC_COMM_WORLD, PETSC_ERR_WRONG_MPI_SIZE, "This is a uniprocessor example only!");
 
   PetscCall(PetscOptionsGetInt(NULL, NULL, "-n", &n, NULL));
 
@@ -61,7 +52,6 @@ int main(int argc, char **args)
   PetscCall(MatCreateFromMTX(&A, filein, aijonly));
   PetscCall(PetscFOpen(PETSC_COMM_SELF, filein, "r", &file));
   PetscCallExternal(mm_read_banner, file, &matcode);
-  if (mm_is_symmetric(matcode)) symmetric = PETSC_TRUE;
   PetscCallExternal(mm_write_banner, stdout, matcode);
   PetscCallExternal(mm_read_mtx_crd_size, file, &M, &N, &nz);
   PetscCall(PetscFClose(PETSC_COMM_SELF, file));
@@ -243,21 +233,17 @@ TEST*/
 
    test:
       suffix: 1
-      args: -fin ${wPETSC_DIR}/share/petsc/datafiles/matrices/amesos2_test_mat0.mtx -fout petscmat.aij
-      output_file: output/ex72_1.out
+      args: -fin ${wPETSC_DIR}/share/petsc/datafiles/matrices/amesos2_test_mat0.mtx
 
    test:
       suffix: 2
-      args: -fin ${wPETSC_DIR}/share/petsc/datafiles/matrices/LFAT5.mtx -fout petscmat.sbaij
-      output_file: output/ex72_2.out
+      args: -fin ${wPETSC_DIR}/share/petsc/datafiles/matrices/LFAT5.mtx petscmat.sbaij
 
    test:
       suffix: 3
-      args: -fin ${wPETSC_DIR}/share/petsc/datafiles/matrices/m_05_05_crk.mtx -fout petscmat2.aij
-      output_file: output/ex72_3.out
+      args: -fin ${wPETSC_DIR}/share/petsc/datafiles/matrices/m_05_05_crk.mtx petscmat2.aij
 
    test:
       suffix: 4
-      args: -fin ${wPETSC_DIR}/share/petsc/datafiles/matrices/amesos2_test_mat0.mtx -fout petscmat.aij -permute rcm
-      output_file: output/ex72_4.out
+      args: -fin ${wPETSC_DIR}/share/petsc/datafiles/matrices/amesos2_test_mat0.mtx petscmat.aij -permute rcm
 TEST*/

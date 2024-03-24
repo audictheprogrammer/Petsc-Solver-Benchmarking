@@ -1,27 +1,14 @@
-static char help[] = "Solves a linear system with KSP.\n\n";
-// static char help[] = "Loads a MTX matrix then solves a linear system with KSP.\n\n";
+static char help[] = "Distributed: Loads a MTX matrix then solves a linear system with KSP.\n\n";
 
-/*
-
-https://petsc.org/main/manualpages/Mat/MatCreateSubMatrix/
-https://petsc.org/main/manualpages/Mat/MatCreateMPIMatConcatenateSeqMat/
-https://petsc.org/release/manual/mat/#low-level-matrix-creation-routines
-https://petsc.org/release/manualpages/IS/ISCreateStride/
-https://petsc.org/release/manualpages/Sys/PetscSplitOwnership/
-
-  Include "petscksp.h" so that we can use KSP solvers.  Note that this file
-  automatically includes:
-     petscsys.h       - base PETSc routines   petscvec.h - vectors
-     petscmat.h - matrices
-     petscis.h     - index sets            petscksp.h - Krylov subspace methods
-     petscviewer.h - viewers               petscpc.h  - preconditioners
-
-  Note:  The corresponding uniprocessor example is ex1.c
-
-mpiexec -n 2 ./ex23 -fin ${wPETSC_DIR}/cage3.mtx petscmat.aij -aij_only -pc_type lu -pc_factor_mat_solver_type mumps -memory_view -log_view -ksp_view
-*/
 #include <petsc.h>
 #include "mmloader.h"
+
+/*
+export wPETSC_DIR=/mnt/c/Users/audic/petsc/share/petsc/datafiles/matrices/MYMAT
+export wPETSC_DIR=/mnt/c/Users/xu/petsc/share/petsc/datafiles/matrices/MYMAT
+
+mpiexec -n 2 ./ex23 -fin ${wPETSC_DIR}/cvxbqp1.mtx petscmat.aij -aij_only -pc_type lu -pc_factor_mat_solver_type mumps -memory_view -log_view -ksp_view> TEST2.txt
+*/
 
 int main(int argc, char **args)
 {
@@ -83,8 +70,7 @@ int main(int argc, char **args)
 
   /* Creating local matrices, vectors avec local vectors. */
   PetscCall(PetscSplitOwnership(PETSC_COMM_WORLD, &n, &N));
-
-  /* A lot of work to be done here. */
+  /* Not fully working yet. */
   int first_processors_n = ceil(1.0 * N / size);
   int last_n = N % first_processors_n;
   if (N % first_processors_n == 0){
@@ -94,7 +80,7 @@ int main(int argc, char **args)
 
   PetscCall(ISCreateStride(PETSC_COMM_WORLD, M, zero, one, &col_is));       // Full columns.
 
-  /* A lot of work to be done here part 2. */
+  /* Not fully working yet. */
   if (rank == size-1){
     PetscCall(ISCreateStride(PETSC_COMM_WORLD, n, last_n, one, &row_is));    // Partiel rows.
   } else {
