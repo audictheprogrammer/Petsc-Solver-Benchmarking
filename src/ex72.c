@@ -1,4 +1,4 @@
-static char help[] = "Solves a tridiagonal linear system with KSP.\n\n";
+static char help[] = "Loads a MTX matrix then solves a linear system with KSP.\n\n";
 
 /*
   Include "petscksp.h" so that we can use KSP solvers.  Note that this file
@@ -13,11 +13,10 @@ static char help[] = "Solves a tridiagonal linear system with KSP.\n\n";
 #include <petsc.h>
 #include "mmloader.h"
 
-/* 
-export wPETSC_DIR=/mnt/c/Users/xu/petsc/share/petsc/datafiles/matrices
-
-./ex72 -fin ${wPETSC_DIR}/amesos2_test_mat0.mtx -fout petscmat.aij -permute rcm -ksp_monitor -pc_type none -ksp_min_it 0
-./ex72 -fin ${wPETSC_DIR}/1138_bus.mtx -fout petscmat.aij -permute rcm -ksp_monitor -pc_type none -ksp_min_it 0
+/*
+export wPETSC_DIR=/mnt/c/Users/audic/petsc/share/petsc/datafiles/matrices/MYMAT
+export wPETSC_DIR=/mnt/c/Users/xu/petsc/share/petsc/datafiles/matrices/MYMAT
+./ex72 -fin ${wPETSC_DIR}/1138_bus.mtx petscmat.aij -aij_only -pc_type lu -pc_factor_mat_solver_type mumps -memory_view -log_view -ksp_view
 */
 
 int main(int argc, char **args)
@@ -31,9 +30,9 @@ int main(int argc, char **args)
   PC          pc;      /* preconditioner context */
   PetscReal   norm;    /* norm of solution error */
   PetscInt    n, its;
-  
+
   PetscInt    M, N, nz;
-  char        filein[PETSC_MAX_PATH_LEN], fileout[PETSC_MAX_PATH_LEN];
+  char        filein[PETSC_MAX_PATH_LEN];
   char        ordering[256] = MATORDERINGRCM;
   // PetscViewer view;
   PetscBool   flag, symmetric = PETSC_FALSE, aijonly = PETSC_FALSE, permute = PETSC_FALSE;
@@ -44,7 +43,7 @@ int main(int argc, char **args)
   PetscFunctionBeginUser;
   PetscCall(PetscInitialize(&argc, &args, (char *)0, help));
   PetscCallMPI(MPI_Comm_size(PETSC_COMM_WORLD, &size));
-  PetscCheck(size == 1, PETSC_COMM_WORLD, PETSC_ERR_WRONG_MPI_SIZE, "This is a uniprocessor example only!");
+  // PetscCheck(size == 1, PETSC_COMM_WORLD, PETSC_ERR_WRONG_MPI_SIZE, "This is a uniprocessor example only!");
 
   PetscCall(PetscOptionsGetInt(NULL, NULL, "-n", &n, NULL));
 
@@ -54,8 +53,6 @@ int main(int argc, char **args)
   {
     PetscCall(PetscOptionsString("-fin", "Input Matrix Market file", "", filein, filein, sizeof(filein), &flag));
     PetscCheck(flag, PETSC_COMM_SELF, PETSC_ERR_USER_INPUT, "Please use -fin <filename> to specify the input file name!");
-    PetscCall(PetscOptionsString("-fout", "Output file in petsc sparse binary format", "", fileout, fileout, sizeof(fileout), &flag));
-    PetscCheck(flag, PETSC_COMM_SELF, PETSC_ERR_USER_INPUT, "Please use -fout <filename> to specify the output file name!");
     PetscCall(PetscOptionsBool("-aij_only", "Use MATAIJ for all cases", "", aijonly, &aijonly, NULL));
     PetscCall(PetscOptionsFList("-permute", "Permute matrix and vector to solving in new ordering", "", MatOrderingList, ordering, ordering, sizeof(ordering), &permute));
   }
@@ -81,7 +78,7 @@ int main(int argc, char **args)
   n = N;
 
    /* Matrix loaded. */
-  
+
   /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
          Compute the matrix and right-hand-side vector that define
          the linear system, Ax = b.
@@ -142,8 +139,8 @@ int main(int argc, char **args)
      - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
   /* check that KSP automatically handles the fact that the the new non-zero values in the matrix are propagated to the KSP solver */
-  // PetscCall(MatShift(A, 2.0)); 
-  
+  // PetscCall(MatShift(A, 2.0));
+
   PetscCall(KSPSolve(ksp, b, x));
 
   /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

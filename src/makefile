@@ -1,4 +1,5 @@
-export PETSC_DIR=/mnt/c/Users/xu/petsc
+# export PETSC_DIR=/mnt/c/Users/xu/petsc
+export PETSC_DIR=/mnt/c/Users/audic/petsc
 export wPETSC_DIR=/mnt/c/Users/xu/petsc/share/petsc/datafiles/matrices
 export wPETSC_DIR=/mnt/c/Users/xu/petsc/share/petsc/datafiles/matrices/MYMAT
 export wPETSC_DIR=../data
@@ -7,6 +8,7 @@ export wPETSC_DIR=../data
 CLEANFILES   = bench_spmv
 
 ex72: ex72.o mmloader.o mmio.o
+ex23: ex23.o mmloader.o mmio.o
 bench_spmv: bench_spmv.o mmloader.o mmio.o cJSON.o
 
 include ${PETSC_DIR}/lib/petsc/conf/variables
