@@ -70,22 +70,25 @@ int main(int argc, char **args)
 
   /* Creating local matrices, vectors avec local vectors. */
   PetscCall(PetscSplitOwnership(PETSC_COMM_WORLD, &n, &N));
-  /* Not fully working yet. */
-  int first_processors_n = ceil(1.0 * N / size);
-  int last_n = N % first_processors_n;
-  if (N % first_processors_n == 0){
-    last_n = first_processors_n;
+  /* Fully working, but ugly. */
+  int starting_pos = 0;
+  for (int i = 0; i < rank; i++){
+    int n2 = N / size;
+
+    int k = N % n2;
+    if (n2 == 1){
+      k = N - size;
+    }
+
+    if (k != 0 && i < k){
+      n2++;
+    }
+    starting_pos += n2;
   }
 
 
-  PetscCall(ISCreateStride(PETSC_COMM_WORLD, M, zero, one, &col_is));       // Full columns.
-
-  /* Not fully working yet. */
-  if (rank == size-1){
-    PetscCall(ISCreateStride(PETSC_COMM_WORLD, n, last_n, one, &row_is));    // Partiel rows.
-  } else {
-    PetscCall(ISCreateStride(PETSC_COMM_WORLD, n, rank*first_processors_n, one, &row_is));    // Partiel rows.
-  }
+  PetscCall(ISCreateStride(PETSC_COMM_WORLD, M, zero, one, &col_is));             // Full columns.
+  PetscCall(ISCreateStride(PETSC_COMM_WORLD, n, starting_pos, one, &row_is));     // Partiel rows.
 
   PetscCall(MatCreateSubMatrix(A, row_is, col_is, PETSC_DECIDE, &A_local));
   PetscCall(MatCreateMPIMatConcatenateSeqMat(PETSC_COMM_WORLD, A_local, n, MAT_INITIAL_MATRIX, &A_MPI));
