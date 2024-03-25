@@ -29,7 +29,8 @@ int main(int argc, char **args)
   PetscBool   flag, aijonly = PETSC_FALSE, permute = PETSC_FALSE;
   IS          rowperm = NULL, colperm = NULL;
   IS          row_is, col_is;
-  PetscMPIInt size, rank;
+  // PetscMPIInt size, rank;
+  PetscMPIInt size, rank, starting_pos = 0;
 
 
   PetscFunctionBeginUser;
@@ -70,22 +71,9 @@ int main(int argc, char **args)
 
   /* Creating local matrices, vectors avec local vectors. */
   PetscCall(PetscSplitOwnership(PETSC_COMM_WORLD, &n, &N));
-  /* Fully working, but ugly. */
-  int starting_pos = 0;
-  for (int i = 0; i < rank; i++){
-    int n2 = N / size;
-
-    int k = N % n2;
-    if (n2 == 1){
-      k = N - size;
-    }
-
-    if (k != 0 && i < k){
-      n2++;
-    }
-    starting_pos += n2;
-  }
-
+  // Starting position = Sum of previous n_local, myself excluded.
+  PetscCallMPI(MPI_Scan(&n, &starting_pos, 1, MPI_INT, MPI_SUM, PETSC_COMM_WORLD));
+  starting_pos -= n;
 
   PetscCall(ISCreateStride(PETSC_COMM_WORLD, M, zero, one, &col_is));             // Full columns.
   PetscCall(ISCreateStride(PETSC_COMM_WORLD, n, starting_pos, one, &row_is));     // Partiel rows.
@@ -93,6 +81,7 @@ int main(int argc, char **args)
   PetscCall(MatCreateSubMatrix(A, row_is, col_is, PETSC_DECIDE, &A_local));
   PetscCall(MatCreateMPIMatConcatenateSeqMat(PETSC_COMM_WORLD, A_local, n, MAT_INITIAL_MATRIX, &A_MPI));
 
+  // PetscCall(PetscPrintf(PETSC_COMM_SELF, "RANK = %d, starting_pos = %d.\n", rank, starting_pos));
   // PetscCall(PetscPrintf(PETSC_COMM_SELF, "RANK = %d, n = %d.\n", rank, n));
   // PetscCall(MatView(A_MPI, PETSC_VIEWER_STDOUT_WORLD));
 
@@ -102,9 +91,6 @@ int main(int argc, char **args)
   PetscCall(VecSetFromOptions(x));
   PetscCall(VecDuplicate(x, &b));
   PetscCall(VecDuplicate(x, &u));
-
-  // PetscCall(PetscPrintf(PETSC_COMM_SELF, "RANK = %d, n = %d.\n", rank, n));
-  // PetscCall(VecView(x, PETSC_VIEWER_STDOUT_WORLD));
 
 
   /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -125,8 +111,8 @@ int main(int argc, char **args)
 
   /* Assemble the matrix */
   // USEFULL ??
-  // PetscCall(MatAssemblyBegin(A_MPI, MAT_FINAL_ASSEMBLY));
-  // PetscCall(MatAssemblyEnd(A_MPI, MAT_FINAL_ASSEMBLY));
+  PetscCall(MatAssemblyBegin(A_MPI, MAT_FINAL_ASSEMBLY));
+  PetscCall(MatAssemblyEnd(A_MPI, MAT_FINAL_ASSEMBLY));
 
   /*
      Set exact solution; then compute right-hand-side vector.

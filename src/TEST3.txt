@@ -1,15 +1,12 @@
 %%MatrixMarket matrix coordinate real symmetric
 %%MatrixMarket matrix coordinate real symmetric
 %%MatrixMarket matrix coordinate real symmetric
-M: 1138, N: 1138, nnz: 2596
+M: 65025, N: 65025, nnz: 547625
 Reading matrix completes.
-RANK = 1, starting_pos = 380.
-M: 1138, N: 1138, nnz: 2596
+M: 65025, N: 65025, nnz: 547625
 Reading matrix completes.
-RANK = 0, starting_pos = 0.
-M: 1138, N: 1138, nnz: 2596
+M: 65025, N: 65025, nnz: 547625
 Reading matrix completes.
-RANK = 2, starting_pos = 759.
 KSP Object: 3 MPI processes
   type: gmres
     restart=30, using Classical (unmodified) Gram-Schmidt Orthogonalization with no iterative refinement
@@ -27,78 +24,78 @@ PC Object: 3 MPI processes
       Factored matrix follows:
         Mat Object: 3 MPI processes
           type: mumps
-          rows=1138, cols=1138
+          rows=65025, cols=65025
           package used to perform factorization: mumps
-          total: nonzeros=23990, allocated nonzeros=23990
+          total: nonzeros=7355751, allocated nonzeros=7355751
             MUMPS run parameters:
               Use -ksp_view ::ascii_info_detail to display information for all processes
-              RINFOG(1) (global estimated flops for the elimination after analysis): 300066.
-              RINFOG(2) (global estimated flops for the assembly after factorization): 948.
-              RINFOG(3) (global estimated flops for the elimination after factorization): 300066.
+              RINFOG(1) (global estimated flops for the elimination after analysis): 7.8387e+08
+              RINFOG(2) (global estimated flops for the assembly after factorization): 7.70647e+06
+              RINFOG(3) (global estimated flops for the elimination after factorization): 7.8387e+08
               (RINFOG(12) RINFOG(13))*2^INFOG(34) (determinant): (0.,0.)*(2^0)
-              INFOG(3) (estimated real workspace for factors on all processors after analysis): 23990
-              INFOG(4) (estimated integer workspace for factors on all processors after analysis): 4360
-              INFOG(5) (estimated maximum front size in the complete tree): 29
-              INFOG(6) (number of nodes in the complete tree): 80
-              INFOG(7) (ordering option effectively used after analysis): 2
+              INFOG(3) (estimated real workspace for factors on all processors after analysis): 7355751
+              INFOG(4) (estimated integer workspace for factors on all processors after analysis): 498966
+              INFOG(5) (estimated maximum front size in the complete tree): 459
+              INFOG(6) (number of nodes in the complete tree): 3963
+              INFOG(7) (ordering option effectively used after analysis): 5
               INFOG(8) (structural symmetry in percent of the permuted matrix after analysis): -1
-              INFOG(9) (total real/complex workspace to store the matrix factors after factorization): 23990
-              INFOG(10) (total integer space store the matrix factors after factorization): 4360
-              INFOG(11) (order of largest frontal matrix after factorization): 29
+              INFOG(9) (total real/complex workspace to store the matrix factors after factorization): 7355751
+              INFOG(10) (total integer space store the matrix factors after factorization): 498966
+              INFOG(11) (order of largest frontal matrix after factorization): 459
               INFOG(12) (number of off-diagonal pivots): 0
               INFOG(13) (number of delayed pivots after factorization): 0
               INFOG(14) (number of memory compress after factorization): 0
               INFOG(15) (number of steps of iterative refinement after solution): 0
-              INFOG(16) (estimated size (in MB) of all MUMPS internal data for factorization after analysis: value on the most memory consuming processor): 1
-              INFOG(17) (estimated size of all MUMPS internal data for factorization after analysis: sum over all processors): 3
-              INFOG(18) (size of all MUMPS internal data allocated during factorization: value on the most memory consuming processor): 1
-              INFOG(19) (size of all MUMPS internal data allocated during factorization: sum over all processors): 3
-              INFOG(20) (estimated number of entries in the factors): 23990
-              INFOG(21) (size in MB of memory effectively used during factorization - value on the most memory consuming processor): 1
-              INFOG(22) (size in MB of memory effectively used during factorization - sum over all processors): 3
+              INFOG(16) (estimated size (in MB) of all MUMPS internal data for factorization after analysis: value on the most memory consuming processor): 48
+              INFOG(17) (estimated size of all MUMPS internal data for factorization after analysis: sum over all processors): 136
+              INFOG(18) (size of all MUMPS internal data allocated during factorization: value on the most memory consuming processor): 48
+              INFOG(19) (size of all MUMPS internal data allocated during factorization: sum over all processors): 136
+              INFOG(20) (estimated number of entries in the factors): 7355751
+              INFOG(21) (size in MB of memory effectively used during factorization - value on the most memory consuming processor): 43
+              INFOG(22) (size in MB of memory effectively used during factorization - sum over all processors): 124
               INFOG(23) (after analysis: value of ICNTL(6) effectively used): 0
               INFOG(24) (after analysis: value of ICNTL(12) effectively used): 1
               INFOG(25) (after factorization: number of pivots modified by static pivoting): 0
               INFOG(28) (after factorization: number of null pivots encountered): 0
-              INFOG(29) (after factorization: effective number of entries in the factors (sum over all processors)): 23990
-              INFOG(30, 31) (after solution: size in Mbytes of memory used during solution phase): 7, 21
+              INFOG(29) (after factorization: effective number of entries in the factors (sum over all processors)): 7355751
+              INFOG(30, 31) (after solution: size in Mbytes of memory used during solution phase): 39, 109
               INFOG(32) (after analysis: type of analysis done): 1
               INFOG(33) (value used for ICNTL(8)): 7
               INFOG(34) (exponent of the determinant if determinant is requested): 0
-              INFOG(35) (after factorization: number of entries taking into account BLR factor compression - sum over all processors): 23990
+              INFOG(35) (after factorization: number of entries taking into account BLR factor compression - sum over all processors): 7355751
               INFOG(36) (after analysis: estimated size of all MUMPS internal data for running BLR in-core - value on the most memory consuming processor): 0
               INFOG(37) (after analysis: estimated size of all MUMPS internal data for running BLR in-core - sum over all processors): 0
               INFOG(38) (after analysis: estimated size of all MUMPS internal data for running BLR out-of-core - value on the most memory consuming processor): 0
               INFOG(39) (after analysis: estimated size of all MUMPS internal data for running BLR out-of-core - sum over all processors): 0
+Norm of error 4.74921e-12, Iterations 1
+Norm of error 4.74921e-12, Iterations 1
   linear system matrix = precond matrix:
   Mat Object: 3 MPI processes
     type: mpiaij
-    rows=1138, cols=1138
-    total: nonzeros=4054, allocated nonzeros=4054
+    rows=65025, cols=65025
+    total: nonzeros=547625, allocated nonzeros=547625
     total number of mallocs used during MatSetValues calls=0
       not using I-node (on process 0) routines
-Norm of error 1.0432e-10, Iterations 1
-Norm of error 1.0432e-10, Iterations 1
-Norm of error 1.0432e-10, Iterations 1
+Norm of error 4.74921e-12, Iterations 1
 Summary of Memory Usage in PETSc
-Maximum (over computational time) process memory:        total 1.2592e+08 max 4.5490e+07 min 3.7564e+07
-Current process memory:                                  total 1.2592e+08 max 4.5490e+07 min 3.7564e+07
+Maximum (over computational time) process memory:        total 3.5678e+08 max 1.3544e+08 min 1.0865e+08
+Current process memory:                                  total 2.4903e+08 max 9.8341e+07 min 7.4486e+07
 ****************************************************************************************************************************************************************
 ***                                WIDEN YOUR WINDOW TO 160 CHARACTERS.  Use 'enscript -r -fCourier9' to print this document                                 ***
 ****************************************************************************************************************************************************************
 
 ------------------------------------------------------------------ PETSc Performance Summary: ------------------------------------------------------------------
 
-./ex23 on a arch-opt named LAPTOP-33OC98F4 with 3 processors, by xu Mon Mar 25 15:36:36 2024
+./ex23 on a arch-opt named LAPTOP-33OC98F4 with 3 processors, by xu Mon Mar 25 18:38:56 2024
 Using Petsc Development GIT revision: v3.20.5-816-gd7bbac59785  GIT Date: 2024-03-16 23:55:09 +0000
 
                          Max       Max/Min     Avg       Total
-Time (sec):           2.335e-01     1.000   2.335e-01
+Time (sec):           2.437e+00     1.000   2.437e+00
 Objects:              0.000e+00     0.000   0.000e+00
-Flops:                4.936e+04     1.368   4.226e+04  1.268e+05
-Flops/sec:            2.114e+05     1.368   1.810e+05  5.429e+05
-MPI Msg Count:        2.500e+01     1.000   2.500e+01  7.500e+01
-MPI Msg Len (bytes):  1.123e+04     1.200   4.110e+02  3.083e+04
+Flops:                1.410e+07     1.092   1.337e+07  4.010e+07
+Flops/sec:            5.784e+06     1.092   5.484e+06  1.645e+07
+MPI Msg Count:        2.100e+01     1.000   2.100e+01  6.300e+01
+MPI Msg Len (bytes):  9.156e+05     1.210   3.984e+04  2.510e+06
 MPI Reductions:       5.100e+01     1.000
 
 Flop counting convention: 1 flop = 1 real number operation of type (multiply/divide/add/subtract)
@@ -107,7 +104,7 @@ Flop counting convention: 1 flop = 1 real number operation of type (multiply/div
 
 Summary of Stages:   ----- Time ------  ----- Flop ------  --- Messages ---  -- Message Lengths --  -- Reductions --
                         Avg     %Total     Avg     %Total    Count   %Total     Avg         %Total    Count   %Total
- 0:      Main Stage: 2.3348e-01 100.0%  1.2677e+05 100.0%  7.500e+01 100.0%  4.110e+02      100.0%  3.300e+01  64.7%
+ 0:      Main Stage: 2.4372e+00 100.0%  4.0100e+07 100.0%  6.300e+01 100.0%  3.984e+04      100.0%  3.300e+01  64.7%
 
 ------------------------------------------------------------------------------------------------------------------------
 See the 'Profiling' chapter of the users' manual for details on interpreting output.
@@ -131,35 +128,35 @@ Event                Count      Time (sec)     Flop                             
 
 --- Event Stage 0: Main Stage
 
-BuildTwoSided          2 1.0 6.0675e-05 1.1 0.00e+00 0.0 1.2e+01 4.0e+00 2.0e+00  0  0 16  0  4   0  0 16  0  6     0
-MatMult                2 1.0 7.1050e-03 4.9 4.92e+03 1.1 1.2e+01 3.9e+02 0.0e+00  2 11 16 15  0   2 11 16 15  0     2
-MatSolve               2 1.0 1.0264e-02 1.0 3.79e+04 1.6 5.1e+01 4.9e+02 5.0e+00  4 72 68 81 10   4 72 68 81 15     9
-MatLUFactorSym         1 1.0 5.4894e-02 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00 24  0  0  0  0  24  0  0  0  0     0
-MatLUFactorNum         1 1.0 1.2394e-02 1.0 4.56e+02 2.0 0.0e+00 0.0e+00 0.0e+00  5  1  0  0  0   5  1  0  0  0     0
-MatAssemblyBegin       3 1.0 1.4968e-03 1.2 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  1  0  0  0  0   1  0  0  0  0     0
-MatAssemblyEnd         3 1.0 5.2147e-03 1.0 0.00e+00 0.0 1.2e+01 9.9e+01 5.0e+00  2  0 16  4 10   2  0 16  4 15     0
-MatCreateSubMats       1 1.0 1.0519e-04 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0
-MatView                2 1.0 2.8514e-03 76.8 0.00e+00 0.0 0.0e+00 0.0e+00 1.0e+00  1  0  0  0  2   1  0  0  0  3     0
-MatMPIConcateSeq       1 1.0 1.8585e-02 1.2 0.00e+00 0.0 1.2e+01 9.9e+01 1.0e+01  7  0 16  4 20   7  0 16  4 30     0
-VecMDot                1 1.0 7.3680e-05 4.6 7.59e+02 1.0 0.0e+00 0.0e+00 1.0e+00  0  2  0  0  2   0  2  0  0  3    31
-VecNorm                3 1.0 1.5112e-04 6.2 2.28e+03 1.0 0.0e+00 0.0e+00 3.0e+00  0  5  0  0  6   0  5  0  0  9    45
-VecScale               2 1.0 6.0810e-06 1.2 7.60e+02 1.0 0.0e+00 0.0e+00 0.0e+00  0  2  0  0  0   0  2  0  0  0   374
-VecCopy                1 1.0 2.5250e-06 1.2 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0
-VecSet                 2 1.0 6.7030e-06 1.5 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0
-VecAXPY                2 1.0 1.6631e-05 1.6 1.52e+03 1.0 0.0e+00 0.0e+00 0.0e+00  0  4  0  0  0   0  4  0  0  0   274
-VecMAXPY               2 1.0 1.6030e-06 1.3 1.52e+03 1.0 0.0e+00 0.0e+00 0.0e+00  0  4  0  0  0   0  4  0  0  0  2840
-VecScatterBegin        4 1.0 1.4347e-03 1.0 0.00e+00 0.0 2.4e+01 7.2e+02 0.0e+00  1  0 32 56  0   1  0 32 56  0     0
-VecScatterEnd          4 1.0 5.6970e-03 143.8 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  2  0  0  0  0   2  0  0  0  0     0
-VecNormalize           2 1.0 2.6210e-05 1.0 2.28e+03 1.0 0.0e+00 0.0e+00 2.0e+00  0  5  0  0  4   0  5  0  0  6   260
-SFSetGraph             2 1.0 3.2142e-05 1.4 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0
-SFSetUp                2 1.0 1.6142e-03 1.0 0.00e+00 0.0 2.4e+01 1.8e+02 2.0e+00  1  0 32 14  4   1  0 32 14  6     0
-SFPack                 4 1.0 1.3406e-03 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  1  0  0  0  0   1  0  0  0  0     0
-SFUnpack               4 1.0 2.9060e-06 1.5 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0
-KSPSetUp               1 1.0 3.3954e-05 1.3 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0
-KSPSolve               1 1.0 3.8180e-02 1.1 4.54e+04 1.4 5.7e+01 4.8e+02 8.0e+00 16 90 76 89 16  16 90 76 89 24     3
-KSPGMRESOrthog         1 1.0 8.2938e-05 3.3 1.52e+03 1.0 0.0e+00 0.0e+00 1.0e+00  0  4  0  0  2   0  4  0  0  3    55
-PCSetUp                1 1.0 6.7379e-02 1.0 4.56e+02 2.0 0.0e+00 0.0e+00 2.0e+00 29  1  0  0  4  29  1  0  0  6     0
-PCApply                2 1.0 1.0269e-02 1.0 3.79e+04 1.6 5.1e+01 4.9e+02 5.0e+00  4 72 68 81 10   4 72 68 81 15     9
+BuildTwoSided          2 1.0 2.5615e-03 10.2 0.00e+00 0.0 9.0e+00 4.0e+00 2.0e+00  0  0 14  0  4   0  0 14  0  6     0
+MatMult                2 1.0 3.8046e-03 1.1 8.23e+05 1.7 6.0e+00 1.5e+05 0.0e+00  0  5 10 35  0   0  5 10 35  0   542
+MatSolve               2 1.0 4.6381e-02 1.0 1.05e+07 1.1 5.1e+01 2.7e+04 5.0e+00  2 73 81 56 10   2 73 81 56 15   629
+MatLUFactorSym         1 1.0 7.4854e-01 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00 31  0  0  0  0  31  0  0  0  0     0
+MatLUFactorNum         1 1.0 1.7772e-01 1.0 2.75e+06 1.1 0.0e+00 0.0e+00 0.0e+00  7 19  0  0  0   7 19  0  0  0    43
+MatAssemblyBegin       4 1.0 1.8625e-03 118.8 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0
+MatAssemblyEnd         4 1.0 3.2804e-02 1.1 0.00e+00 0.0 6.0e+00 3.7e+04 5.0e+00  1  0 10  9 10   1  0 10  9 15     0
+MatCreateSubMats       1 1.0 4.7134e-03 1.9 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0
+MatView                2 1.0 1.0267e-02 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 1.0e+00  0  0  0  0  2   0  0  0  0  3     0
+MatMPIConcateSeq       1 1.0 4.2176e-02 1.0 0.00e+00 0.0 6.0e+00 3.7e+04 1.0e+01  2  0 10  9 20   2  0 10  9 30     0
+VecMDot                1 1.0 7.4231e-05 1.8 4.33e+04 1.0 0.0e+00 0.0e+00 1.0e+00  0  0  0  0  2   0  0  0  0  3  1752
+VecNorm                3 1.0 2.9245e-04 3.6 1.30e+05 1.0 0.0e+00 0.0e+00 3.0e+00  0  1  0  0  6   0  1  0  0  9  1334
+VecScale               2 1.0 1.9608e-05 1.1 4.34e+04 1.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0  6632
+VecCopy                1 1.0 1.2646e-04 3.1 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0
+VecSet                 2 1.0 4.0046e-05 1.2 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0
+VecAXPY                2 1.0 6.7728e-05 1.0 8.67e+04 1.0 0.0e+00 0.0e+00 0.0e+00  0  1  0  0  0   0  1  0  0  0  3840
+VecMAXPY               2 1.0 3.3504e-05 1.3 8.67e+04 1.0 0.0e+00 0.0e+00 0.0e+00  0  1  0  0  0   0  1  0  0  0  7763
+VecScatterBegin        4 1.0 3.0502e-03 11.9 0.00e+00 0.0 1.8e+01 8.8e+04 0.0e+00  0  0 29 63  0   0  0 29 63  0     0
+VecScatterEnd          4 1.0 2.8471e-03 17.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0
+VecNormalize           2 1.0 9.0933e-05 1.6 1.30e+05 1.0 0.0e+00 0.0e+00 2.0e+00  0  1  0  0  4   0  1  0  0  6  4290
+SFSetGraph             2 1.0 2.2310e-03 1.9 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0
+SFSetUp                2 1.0 6.5225e-03 3.1 0.00e+00 0.0 1.8e+01 2.2e+04 2.0e+00  0  0 29 16  4   0  0 29 16  6     0
+SFPack                 4 1.0 2.8899e-03 18.9 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0
+SFUnpack               4 1.0 5.6388e-05 1.5 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0
+KSPSetUp               1 1.0 3.7496e-04 1.1 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  0  0  0  0  0   0  0  0  0  0     0
+KSPSolve               1 1.0 6.8959e-02 1.0 1.10e+07 1.1 5.4e+01 3.4e+04 8.0e+00  3 78 86 73 16   3 78 86 73 24   451
+KSPGMRESOrthog         1 1.0 1.0083e-04 1.4 8.67e+04 1.0 0.0e+00 0.0e+00 1.0e+00  0  1  0  0  2   0  1  0  0  3  2580
+PCSetUp                1 1.0 9.2635e-01 1.0 2.75e+06 1.1 0.0e+00 0.0e+00 2.0e+00 38 19  0  0  4  38 19  0  0  6     8
+PCApply                2 1.0 4.6392e-02 1.0 1.05e+07 1.1 5.1e+01 2.7e+04 5.0e+00  2 73 81 56 10   2 73 81 56 15   629
 ------------------------------------------------------------------------------------------------------------------------
 
 Object Type          Creations   Destructions. Reports information only for process 0.
@@ -177,12 +174,12 @@ Object Type          Creations   Destructions. Reports information only for proc
      Discrete System     1              1
            Weak Form     1              1
 ========================================================================================================================
-Average time to get PetscTime(): 3.31e-08
-Average time for MPI_Barrier(): 1.4748e-06
-Average time for zero size MPI_Send(): 2.772e-06
+Average time to get PetscTime(): 3.41e-08
+Average time for MPI_Barrier(): 3.3162e-06
+Average time for zero size MPI_Send(): 3.62333e-06
 #PETSc Option Table entries:
 -aij_only # (source: command line)
--fin /mnt/c/Users/audic/petsc/share/petsc/datafiles/matrices/MYMAT/1138_bus.mtx # (source: command line)
+-fin /mnt/c/Users/audic/petsc/share/petsc/datafiles/matrices/MYMAT/Dubcova2.mtx # (source: command line)
 -ksp_view # (source: command line)
 -log_view # (source: command line)
 -memory_view # (source: command line)
@@ -192,9 +189,9 @@ Average time for zero size MPI_Send(): 2.772e-06
 Compiled without FORTRAN kernels
 Compiled with full precision matrices (default)
 sizeof(short) 2 sizeof(int) 4 sizeof(long) 8 sizeof(void*) 8 sizeof(PetscScalar) 8 sizeof(PetscInt) 4
-Configure options: --download-mumps --download-metis --download-parmetis --download-ptscotch --download-superlu --download-strumpack --download-bison --download-scalapack --download-suitesparse --download-cmake --with-debugging=0 PETSC_ARCH=arch-opt
+Configure options: --download-mumps --download-metis --download-parmetis --download-ptscotch --download-superlu --download-superlu_dist --download-strumpack --download-bison --download-scalapack --download-suitesparse --download-cmake --with-debugging=0 PETSC_ARCH=arch-opt
 -----------------------------------------
-Libraries compiled on 2024-03-17 12:51:06 on LAPTOP-33OC98F4 
+Libraries compiled on 2024-03-25 15:08:05 on LAPTOP-33OC98F4 
 Machine characteristics: Linux-5.10.60.1-microsoft-standard-WSL2-x86_64-with-glibc2.29
 Using PETSc directory: /mnt/c/Users/audic/petsc
 Using PETSc arch: arch-opt
@@ -209,6 +206,6 @@ Using include paths: -I/mnt/c/Users/audic/petsc/include -I/mnt/c/Users/audic/pet
 
 Using C linker: mpicc
 Using Fortran linker: mpif90
-Using libraries: -Wl,-rpath,/mnt/c/Users/audic/petsc/arch-opt/lib -L/mnt/c/Users/audic/petsc/arch-opt/lib -lpetsc -Wl,-rpath,/mnt/c/Users/audic/petsc/arch-opt/lib -L/mnt/c/Users/audic/petsc/arch-opt/lib -Wl,-rpath,/usr/lib/x86_64-linux-gnu/openmpi/lib -L/usr/lib/x86_64-linux-gnu/openmpi/lib -Wl,-rpath,/usr/lib/gcc/x86_64-linux-gnu/9 -L/usr/lib/gcc/x86_64-linux-gnu/9 -lspqr -lumfpack -lklu -lcholmod -lamd -ldmumps -lmumps_common -lpord -lpthread -lstrumpack -lscalapack -lsuperlu -llapack -lblas -lptesmumps -lptscotchparmetisv3 -lptscotch -lptscotcherr -lesmumps -lscotch -lscotcherr -lparmetis -lmetis -lm -lX11 -ldl -lmpi_usempif08 -lmpi_usempi_ignore_tkr -lmpi_mpifh -lmpi -lgfortran -lm -lgfortran -lm -lgcc_s -lquadmath -lpthread -lstdc++ -lrt -lquadmath -ldl
+Using libraries: -Wl,-rpath,/mnt/c/Users/audic/petsc/arch-opt/lib -L/mnt/c/Users/audic/petsc/arch-opt/lib -lpetsc -Wl,-rpath,/mnt/c/Users/audic/petsc/arch-opt/lib -L/mnt/c/Users/audic/petsc/arch-opt/lib -Wl,-rpath,/usr/lib/x86_64-linux-gnu/openmpi/lib -L/usr/lib/x86_64-linux-gnu/openmpi/lib -Wl,-rpath,/usr/lib/gcc/x86_64-linux-gnu/9 -L/usr/lib/gcc/x86_64-linux-gnu/9 -lspqr -lumfpack -lklu -lcholmod -lamd -ldmumps -lmumps_common -lpord -lpthread -lstrumpack -lscalapack -lsuperlu -lsuperlu_dist -llapack -lblas -lptesmumps -lptscotchparmetisv3 -lptscotch -lptscotcherr -lesmumps -lscotch -lscotcherr -lparmetis -lmetis -lm -lX11 -ldl -lmpi_usempif08 -lmpi_usempi_ignore_tkr -lmpi_mpifh -lmpi -lgfortran -lm -lgfortran -lm -lgcc_s -lquadmath -lpthread -lstdc++ -lrt -lquadmath -ldl
 -----------------------------------------
 
