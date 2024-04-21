@@ -7,7 +7,7 @@ static char help[] = "Distributed: Loads a MTX matrix then solves a linear syste
 export wPETSC_DIR=/mnt/c/Users/audic/petsc/share/petsc/datafiles/matrices/MYMAT
 export wPETSC_DIR=/mnt/c/Users/xu/petsc/share/petsc/datafiles/matrices/MYMAT
 
-mpiexec -n 2 ./ex23 -fin ${wPETSC_DIR}/cvxbqp1.mtx petscmat.aij -aij_only -pc_type lu -pc_factor_mat_solver_type mumps -memory_view -log_view -ksp_view> TEST2.txt
+mpiexec -n 2 ./ex23 -fin ${wPETSC_DIR}/cvxbqp1.mtx petscmat.aij -aij_only -pc_type lu -pc_factor_mat_solver_type mumps -memory_view -log_view -ksp_view > TEST2.txt
 */
 
 int main(int argc, char **args)
@@ -16,21 +16,20 @@ int main(int argc, char **args)
   FILE       *file;
 
   Vec         x, b, u;                                   /* approx solution, RHS, exact solution */
-  Mat         A, A_local, A_MPI;                         /* linear system matrix */
+  Mat         A;                                         /* linear system matrix */
   KSP         ksp;                                       /* linear solver context */
   PC          pc;                                        /* preconditioner context */
-  PetscReal   norm;                                     /* norm of solution error */
-  PetscInt    its, zero = 0, one = 1;
-
-  PetscInt    n = PETSC_DETERMINE, M, N, nz;
+  PetscReal   norm;                                      /* norm of solution error */
+  PetscInt    its;
+  PetscInt    n = PETSC_DETERMINE, m, nz;
+  /* n: local number of rows. */
+  /* m: local number of cols. */
+  PetscInt    M, N, NZ;
   char        filein[PETSC_MAX_PATH_LEN];
   char        ordering[256] = MATORDERINGRCM;
-  // PetscViewer view;
   PetscBool   flag, aijonly = PETSC_FALSE, permute = PETSC_FALSE;
   IS          rowperm = NULL, colperm = NULL;
-  IS          row_is, col_is;
-  // PetscMPIInt size, rank;
-  PetscMPIInt size, rank, starting_pos = 0;
+  PetscMPIInt size, rank;
 
 
   PetscFunctionBeginUser;
@@ -39,25 +38,26 @@ int main(int argc, char **args)
   PetscCallMPI(MPI_Comm_rank(PETSC_COMM_WORLD, &rank));
   PetscCall(PetscOptionsGetInt(NULL, NULL, "-n", &n, NULL));
 
-
   /* Loading matrix. */
   PetscOptionsBegin(PETSC_COMM_WORLD, NULL, "Matrix Market example options", "");
   {
     PetscCall(PetscOptionsString("-fin", "Input Matrix Market file", "", filein, filein, sizeof(filein), &flag));
-    PetscCheck(flag, PETSC_COMM_SELF, PETSC_ERR_USER_INPUT, "Please use -fin <filename> to specify the input file name!");
+    PetscCheck(flag, PETSC_COMM_WORLD, PETSC_ERR_USER_INPUT, "Please use -fin <filename> to specify the input file name!");
     PetscCall(PetscOptionsBool("-aij_only", "Use MATAIJ for all cases", "", aijonly, &aijonly, NULL));
     PetscCall(PetscOptionsFList("-permute", "Permute matrix and vector to solving in new ordering", "", MatOrderingList, ordering, ordering, sizeof(ordering), &permute));
   }
   PetscOptionsEnd();
 
-  PetscCall(MatCreateFromMTX(&A, filein, aijonly));
+  PetscCall(MatCreateFromMTX(&A, filein, aijonly, &n, &m));
+
   PetscCall(PetscFOpen(PETSC_COMM_SELF, filein, "r", &file));
   PetscCallExternal(mm_read_banner, file, &matcode);
   PetscCallExternal(mm_write_banner, stdout, matcode);
-  PetscCallExternal(mm_read_mtx_crd_size, file, &M, &N, &nz);
+  PetscCallExternal(mm_read_mtx_crd_size, file, &M, &N, &NZ);
+  nz = NZ;
+  m = M;
   PetscCall(PetscFClose(PETSC_COMM_SELF, file));
-  PetscCall(PetscPrintf(PETSC_COMM_SELF, "M: %d, N: %d, nnz: %d\n", M, N, nz));
-  PetscCall(PetscPrintf(PETSC_COMM_SELF, "Reading matrix completes.\n"));
+  PetscCall(PetscPrintf(PETSC_COMM_WORLD, "Reading matrix completes.\n"));
   if (permute) {
     Mat Aperm;
     PetscCall(MatGetOrdering(A, ordering, &rowperm, &colperm));
@@ -70,26 +70,9 @@ int main(int argc, char **args)
 
 
   /* Creating local matrices, vectors avec local vectors. */
-  PetscCall(PetscSplitOwnership(PETSC_COMM_WORLD, &n, &N));
-  // Starting position = Sum of previous n_local, myself excluded.
-  PetscCallMPI(MPI_Scan(&n, &starting_pos, 1, MPI_INT, MPI_SUM, PETSC_COMM_WORLD));
-  starting_pos -= n;
-
-  PetscCall(ISCreateStride(PETSC_COMM_WORLD, M, zero, one, &col_is));             // Full columns.
-  PetscCall(ISCreateStride(PETSC_COMM_WORLD, n, starting_pos, one, &row_is));     // Partiel rows.
-
-  PetscCall(MatCreateSubMatrix(A, row_is, col_is, PETSC_DECIDE, &A_local));
-  PetscCall(MatCreateMPIMatConcatenateSeqMat(PETSC_COMM_WORLD, A_local, n, MAT_INITIAL_MATRIX, &A_MPI));
-
-  // PetscCall(PetscPrintf(PETSC_COMM_SELF, "RANK = %d, starting_pos = %d.\n", rank, starting_pos));
-  // PetscCall(PetscPrintf(PETSC_COMM_SELF, "RANK = %d, n = %d.\n", rank, n));
-  // PetscCall(MatView(A_MPI, PETSC_VIEWER_STDOUT_WORLD));
-
-  PetscCall(VecCreate(PETSC_COMM_WORLD, &x));
+  PetscCall(MatCreateVecs(A, &x, &b));
   PetscCall(PetscObjectSetName((PetscObject)x, "Solution"));
-  PetscCall(VecSetSizes(x, n, N));
   PetscCall(VecSetFromOptions(x));
-  PetscCall(VecDuplicate(x, &b));
   PetscCall(VecDuplicate(x, &u));
 
 
@@ -99,27 +82,11 @@ int main(int argc, char **args)
   - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - */
 
   /*
-     Assemble matrix.
-
-     The linear system is distributed across the processors by
-     chunks of contiguous rows, which correspond to contiguous
-     sections of the mesh on which the problem is discretized.
-     For matrix assembly, each processor contributes entries for
-     the part that it owns locally.
-  */
-
-
-  /* Assemble the matrix */
-  // USEFULL ??
-  PetscCall(MatAssemblyBegin(A_MPI, MAT_FINAL_ASSEMBLY));
-  PetscCall(MatAssemblyEnd(A_MPI, MAT_FINAL_ASSEMBLY));
-
-  /*
      Set exact solution; then compute right-hand-side vector.
   */
 
   PetscCall(VecSet(u, 1.0));
-  PetscCall(MatMult(A_MPI, u, b));
+  PetscCall(MatMult(A, u, b));
 
   /* - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
                 Create the linear solver and set various options
@@ -133,7 +100,7 @@ int main(int argc, char **args)
      Set operators. Here the matrix that defines the linear system
      also serves as the preconditioning matrix.
   */
-  PetscCall(KSPSetOperators(ksp, A_MPI, A_MPI));
+  PetscCall(KSPSetOperators(ksp, A, A));
 
   /*
      Set linear solver defaults for this problem (optional).
@@ -191,8 +158,6 @@ int main(int argc, char **args)
   PetscCall(VecDestroy(&u));
   PetscCall(VecDestroy(&b));
   PetscCall(MatDestroy(&A));
-  PetscCall(MatDestroy(&A_local));
-  PetscCall(MatDestroy(&A_MPI));
   PetscCall(KSPDestroy(&ksp));
 
   /*

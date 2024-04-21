@@ -1,7 +1,7 @@
 import sys
 
 if len(sys.argv) != 2:
-    print("Utilisation: python3 script.py <chemin_vers_fichier>")
+    print("Utilisation: python3 filter.py <chemin_vers_fichier>")
     sys.exit(1)
 
 # Récupérer le chemin du fichier à lire à partir des arguments de la ligne de commande

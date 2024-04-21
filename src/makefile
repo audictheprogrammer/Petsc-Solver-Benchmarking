@@ -1,7 +1,6 @@
-# export PETSC_DIR=/mnt/c/Users/xu/petsc
-export PETSC_DIR=/mnt/c/Users/audic/petsc
+export PETSC_DIR=/mnt/c/Users/xu/petsc
+# export PETSC_DIR=/mnt/c/Users/audic/petsc
 export wPETSC_DIR=/mnt/c/Users/xu/petsc/share/petsc/datafiles/matrices
-export wPETSC_DIR=/mnt/c/Users/xu/petsc/share/petsc/datafiles/matrices/MYMAT
 export wPETSC_DIR=../data
 -include ../../../petscdir.mk
 

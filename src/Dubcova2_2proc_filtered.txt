@@ -1,0 +1,45 @@
+FICHIER: Dubcova2.mtx
+############# MUMPS LU ##############
+package used to perform factorization: mumps
+total: nonzeros=7337569, allocated nonzeros=7337569
+total: nonzeros=547625, allocated nonzeros=547625
+Norm of error 6.05303e-12, Iterations 1
+Norm of error 6.05303e-12, Iterations 1
+Time (sec):           7.198e+00     1.000   7.198e+00
+MatSolve               2 1.0 4.0702e-02 1.0 1.47e+07 1.0 2.0e+01 5.8e+04 5.0e+00  1 72 83 64 11   1 72 83 64 18   715
+MatLUFactorSym         1 1.0 6.1447e-01 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  9  0  0  0  0   9  0  0  0  0     0
+MatLUFactorNum         1 1.0 1.1714e-01 1.0 3.93e+06 1.0 0.0e+00 0.0e+00 0.0e+00  2 19  0  0  0   2 19  0  0  0    67
+############# MUMPS Cho #############
+package used to perform factorization: mumps
+total: nonzeros=65025, allocated nonzeros=65025
+total: nonzeros=547625, allocated nonzeros=547625
+Norm of error 0.000754689, Iterations 8
+Norm of error 0.000754689, Iterations 8
+Time (sec):           6.109e+00     1.000   6.109e+00
+MatSolve               9 1.0 4.4521e-01 1.0 5.85e+05 0.0 1.7e+01 1.8e+05 5.0e+00  7  3 61 55  8   7  3 61 55 12     1
+MatCholFctrSym         1 1.0 6.7922e-02 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  1  0  0  0  0   1  0  0  0  0     0
+MatCholFctrNum         1 1.0 7.1483e-02 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  1  0  0  0  0   1  0  0  0  0     0
+############# SuperLU LU ############
+package used to perform factorization: superlu_dist
+total: nonzeros=0, allocated nonzeros=0
+SuperLU_DIST run parameters:
+total: nonzeros=547625, allocated nonzeros=547625
+Norm of error 6.06245e-12, Iterations 1
+Norm of error 6.06245e-12, Iterations 1
+Time (sec):           6.697e+00     1.000   6.697e+00
+MatSolve               2 1.0 5.7897e-02 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  1  0  0  0  0   1  0  0  0  0     0
+MatLUFactor            1 1.0 1.2115e+00 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00 18  0  0  0  0  18  0  0  0  0     0
+############ Strumpack LU ###########
+package used to perform factorization: strumpack
+total: nonzeros=0, allocated nonzeros=0
+total: nonzeros=547625, allocated nonzeros=547625
+Norm of error 6.06251e-12, Iterations 1
+Norm of error 6.06251e-12, Iterations 1
+Time (sec):           6.277e+00     1.000   6.277e+00
+MatSolve               2 1.0 4.9006e-02 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  1  0  0  0  0   1  0  0  0  0     0
+MatLUFactor            1 1.0 7.6530e-01 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00 12  0  0  0  0  12  0  0  0  0     0
+########### SuiteSparse LU ##########
+########### SuiteSparse Cho #########
+########### SuiteSparse QR ##########
+############## Petsc LU #############
+############## Petsc Cho #############

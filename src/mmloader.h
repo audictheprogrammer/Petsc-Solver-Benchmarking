@@ -2,4 +2,4 @@
 #include <petscmat.h>
 #include "mmio.h"
 
-PetscErrorCode MatCreateFromMTX(Mat *A, const char *filein, PetscBool aijonly, PetscInt *m);
+PetscErrorCode MatCreateFromMTX(Mat *A, const char *filein, PetscBool aijonly, PetscInt *m, PetscInt *n);

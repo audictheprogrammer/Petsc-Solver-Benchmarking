@@ -1,0 +1,45 @@
+FICHIER: thermomech_TC.mtx
+############# MUMPS LU ##############
+package used to perform factorization: mumps
+total: nonzeros=8875358, allocated nonzeros=8875358
+total: nonzeros=406858, allocated nonzeros=406858
+Norm of error 8.34439e-11, Iterations 1
+Norm of error 8.34439e-11, Iterations 1
+Time (sec):           5.387e+00     1.000   5.387e+00
+MatSolve               2 1.0 4.9412e-02 1.0 1.94e+07 1.2 2.0e+01 8.5e+04 5.0e+00  1 75 83 77 11   1 75 83 77 18   710
+MatLUFactorSym         1 1.0 6.9999e-01 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00 13  0  0  0  0  13  0  0  0  0     0
+MatLUFactorNum         1 1.0 1.1453e-01 1.0 4.42e+06 1.2 0.0e+00 0.0e+00 0.0e+00  2 18  0  0  0   2 18  0  0  0    72
+############# MUMPS Cho #############
+package used to perform factorization: mumps
+total: nonzeros=102158, allocated nonzeros=102158
+total: nonzeros=406858, allocated nonzeros=406858
+Norm of error 0.00162593, Iterations 7
+Norm of error 0.00162593, Iterations 7
+Time (sec):           5.100e+00     1.000   5.100e+00
+MatSolve               8 1.0 5.6638e-01 1.0 8.17e+05 0.0 1.6e+01 2.7e+05 5.0e+00 11  4 62 71  9  11  4 62 71 12     1
+MatCholFctrSym         1 1.0 1.0775e-01 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  2  0  0  0  0   2  0  0  0  0     0
+MatCholFctrNum         1 1.0 1.1839e-01 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  2  0  0  0  0   2  0  0  0  0     0
+############# SuperLU LU ############
+package used to perform factorization: superlu_dist
+total: nonzeros=0, allocated nonzeros=0
+SuperLU_DIST run parameters:
+Norm of error 8.3452e-11, Iterations 1
+total: nonzeros=406858, allocated nonzeros=406858
+Norm of error 8.3452e-11, Iterations 1
+Time (sec):           6.650e+00     1.000   6.650e+00
+MatSolve               2 1.0 1.0920e-01 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  2  0  0  0  0   2  0  0  0  0     0
+MatLUFactor            1 1.0 2.3601e+00 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00 35  0  0  0  0  35  0  0  0  0     0
+############ Strumpack LU ###########
+package used to perform factorization: strumpack
+total: nonzeros=0, allocated nonzeros=0
+total: nonzeros=406858, allocated nonzeros=406858
+Norm of error 8.34459e-11, Iterations 1
+Norm of error 8.34459e-11, Iterations 1
+Time (sec):           5.309e+00     1.000   5.309e+00
+MatSolve               2 1.0 6.1382e-02 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00  1  0  0  0  0   1  0  0  0  0     0
+MatLUFactor            1 1.0 8.2445e-01 1.0 0.00e+00 0.0 0.0e+00 0.0e+00 0.0e+00 16  0  0  0  0  16  0  0  0  0     0
+########### SuiteSparse LU ##########
+########### SuiteSparse Cho #########
+########### SuiteSparse QR ##########
+############## Petsc LU #############
+############## Petsc Cho #############
