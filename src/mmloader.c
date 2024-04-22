@@ -36,7 +36,6 @@ PetscErrorCode MatCreateFromMTX(Mat *A, const char *filein, PetscBool aijonly, P
   /* Find out local number of rows. */
   PetscCall(PetscSplitOwnership(PETSC_COMM_WORLD, m, &M));
   PetscCall(PetscSplitOwnership(PETSC_COMM_WORLD, n, &N));
-  // *n = N;
 
   /* Starting row = Sum of previous local n, myself excluded. */
   PetscCallMPI(MPI_Exscan(m, &starting_row, 1, MPI_INT, MPI_SUM, PETSC_COMM_WORLD));
@@ -82,25 +81,15 @@ PetscErrorCode MatCreateFromMTX(Mat *A, const char *filein, PetscBool aijonly, P
   PetscCall(MatSetSizes(*A, *m, PETSC_DECIDE, M, N));
 
   if (symmetric && !aijonly) {
-    // PetscCall(MatSetType(*A, MATSBAIJ));
-    // PetscCall(MatSetFromOptions(*A));
-    // PetscCall(PetscObjectTypeCompare((PetscObject)*A, MATSBAIJ, &sametype));
-
-    PetscCall(MatSetType(*A, MATMPISBAIJ));
+    PetscCall(MatSetType(*A, MATSBAIJ));
     PetscCall(MatSetFromOptions(*A));
-    PetscCall(PetscObjectTypeCompare((PetscObject)*A, MATMPISBAIJ, &sametype));
-    
-    // PetscCall(MatSetType(*A, MATSEQSBAIJ));
-    // PetscCall(MatSEQSBAIJSetPreallocation(*A, 1, 0, rownz));
-    // PetscCall(PetscObjectTypeCompare((PetscObject)*A, MATSEQSBAIJ, &sametype));
+    PetscCall(PetscObjectTypeCompareAny((PetscObject)*A, &sametype, MATSEQSBAIJ, MATMPISBAIJ, ""));
+    PetscCall(PetscObjectTypeCompare((PetscObject)*A, MATSBAIJ, &sametype));
     PetscCheck(sametype, PETSC_COMM_WORLD, PETSC_ERR_ARG_WRONG, "Only AIJ and SBAIJ are supported. Your mattype is not supported");
   } else {
-    PetscCall(MatSetType(*A, MATMPIAIJ));
+    PetscCall(MatSetType(*A, MATAIJ));
     PetscCall(MatSetFromOptions(*A));
-    PetscCall(PetscObjectTypeCompare((PetscObject)*A, MATMPIAIJ, &sametype));
-    // PetscCall(MatSetType(*A, MATSEQAIJ));
-    // PetscCall(MatSeqAIJSetPreallocation(*A, 0, rownz));
-    // PetscCall(PetscObjectTypeCompare((PetscObject)*A, MATSEQAIJ, &sametype));
+    PetscCall(PetscObjectTypeCompareAny((PetscObject)*A, &sametype, MATSEQAIJ, MATMPIAIJ, ""));
     PetscCheck(sametype, PETSC_COMM_WORLD, PETSC_ERR_ARG_WRONG, "Only AIJ and SBAIJ are supported. Your mattype is not supported");
   }
   /* Add values to the matrix, these correspond to lower triangular part for symmetric or skew matrices */
