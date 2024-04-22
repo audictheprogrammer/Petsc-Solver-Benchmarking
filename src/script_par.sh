@@ -45,34 +45,4 @@ for fichier in "${LIST_FICHIERS[@]}"; do
     mpiexec -n 4 ./ex23 -fin "${wPETSC_DIR}/${fichier}" petscmat.aij -aij_only -pc_type lu -pc_factor_mat_solver_type strumpack -memory_view -log_view -ksp_view
     echo -e "\n\n"
 
-    echo -e "#####################################"
-    echo -e "########### SuiteSparse LU ##########"
-    echo -e "#####################################"
-    mpiexec -n 4 ./ex23 -fin "${wPETSC_DIR}/${fichier}" petscmat.aij -aij_only -pc_type lu -pc_factor_mat_solver_type umfpack -memory_view -log_view -ksp_view
-    echo -e "\n"
-
-    echo -e "#####################################"
-    echo -e "########### SuiteSparse Cho #########"
-    echo -e "#####################################"
-    mpiexec -n 4 ./ex23 -fin "${wPETSC_DIR}/${fichier}" petscmat.aij -aij_only -pc_type cholesky -pc_factor_mat_solver_type cholmod -memory_view -log_view -ksp_view
-    echo -e "\n"
-
-    echo -e "#####################################"
-    echo -e "########### SuiteSparse QR ##########"
-    echo -e "#####################################"
-    mpiexec -n 4 ./ex23 -fin "${wPETSC_DIR}/${fichier}" petscmat.aij -aij_only -pc_type qr -pc_factor_mat_solver_type spqr -memory_view -log_view -ksp_view
-    echo -e "\n"
-
-    echo -e "#####################################"
-    echo -e "############## Petsc LU #############"
-    echo -e "#####################################"
-    mpiexec -n 4 ./ex23 -fin "${wPETSC_DIR}/${fichier}" petscmat.aij -aij_only -pc_type lu -pc_factor_mat_solver_type petsc -memory_view -log_view -ksp_view
-    echo -e "\n"
-
-    echo -e "######################################"
-    echo -e "############## Petsc Cho #############"
-    echo -e "######################################"
-    mpiexec -n 4 ./ex23 -fin "${wPETSC_DIR}/${fichier}" petscmat.aij -aij_only -pc_type cholesky -pc_factor_mat_solver_type petsc -memory_view -log_view -ksp_view
-    echo -e "\n"
-
 done
