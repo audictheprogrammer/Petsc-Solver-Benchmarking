@@ -23,11 +23,14 @@ def readMTXFile(filename):
     F = open(filename, "r")
     line = F.readline()
 
-    # Step 1: Ignoring first lines.
+    preLines = list()
+    # Step 1: Ignoring first lines. Writing
     while line:
         if line[0] != '%':
             break
+        preLines.append(line)
         line = F.readline()
+
 
     # Step 2: Get number of rows, col, and number of non-zero elements.
     N, M, NNZ = line.split()
@@ -56,14 +59,16 @@ def readMTXFile(filename):
 
     A = scipy.sparse.csr_matrix((val, (row, col)))
     # print(A.toarray())
-    return A, NNZ
+    return A, NNZ, preLines
 
 
-def writeMatrixToMTX(A, NNZ, filename):
+def writeMatrixToMTX(A, NNZ, filename, preLines):
     """ Writes a matrix to a file in MTX format.
     Using row-wise ordering instead of col-wise. """
 
     F = open(filename, "w")
+    for line in preLines:
+        F.write(line)
     N, M = A.shape
     print(f"N, M = {N}, {M}")
 
@@ -78,8 +83,6 @@ def writeMatrixToMTX(A, NNZ, filename):
 
 
     F.close()
-    print(f"New ordering done for the file:")
-    print(filename)
     return
 
 
@@ -93,16 +96,16 @@ def main():
     inputFile = filename_pre + filename_mid + filename_post
     outputFile = filename_pre + filename_mid + "_T" + filename_post
     print(f"input filename = {inputFile}")
-    print(f"outputfilename = {outputFile}")
+    print(f"outputfilename = {outputFile}\n")
 
 
-    A, NNZ = readMTXFile(inputFile)
+    A, NNZ, context = readMTXFile(inputFile)
 
     if (A.getnnz() < 25):
         print(A.toarray())
         print()
 
-    writeMatrixToMTX(A, NNZ, outputFile)
+    writeMatrixToMTX(A, NNZ, outputFile, context)
 
 
 
