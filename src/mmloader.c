@@ -55,7 +55,11 @@ PetscErrorCode MatCreateFromMTX(Mat *A, const char *filein, PetscBool aijonly, P
     ja[nz]--;                                 /* adjust from 1-based to 0-based */
 
     // Read only in my work zone.
-    if ((ia[nz] < starting_row) || ((starting_row + *m) <= ia[nz])) continue;
+    if (ia[nz] < starting_row) continue;
+    if ((starting_row + *m) <= ia[nz]) break;
+
+
+    // if ((ia[nz] < starting_row) || ((starting_row + *m) <= ia[nz])) continue;
 
     if ((symmetric && aijonly) || skew) {     /* transpose */
       rownz[ia[nz] - starting_row]++;
