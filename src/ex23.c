@@ -30,7 +30,7 @@ int main(int argc, char **args)
   PetscBool   flag, aijonly = PETSC_FALSE, permute = PETSC_FALSE;
   IS          rowperm = NULL, colperm = NULL;
   PetscMPIInt size, rank;
-
+  PetscViewer fd;
 
   PetscFunctionBeginUser;
   PetscCall(PetscInitialize(&argc, &args, (char *)0, help));
@@ -48,15 +48,47 @@ int main(int argc, char **args)
   }
   PetscOptionsEnd();
 
-  PetscCall(MatCreateFromMTX(&A, filein, aijonly, &n, &m));
+  PetscLogEvent USER_EVENT;
+//   PetscLogDouble user_event_flops;
 
-  PetscCall(PetscFOpen(PETSC_COMM_SELF, filein, "r", &file));
-  PetscCallExternal(mm_read_banner, file, &matcode);
-  PetscCallExternal(mm_write_banner, stdout, matcode);
-  PetscCallExternal(mm_read_mtx_crd_size, file, &M, &N, &NZ);
+  const char *extension = strrchr(filein, '.');
+  if (extension != NULL) {
+      if (strcmp(extension, ".bin") == 0) {
+          PetscLogEventRegister("Load Time",0, &USER_EVENT);
+          PetscLogEventBegin(USER_EVENT, 0, 0, 0, 0);
+
+          PetscCall(PetscViewerBinaryOpen(PETSC_COMM_WORLD, filein, FILE_MODE_READ, &fd));
+          PetscCall(MatCreate(PETSC_COMM_WORLD, &A));
+
+          PetscCall(MatLoad(A, fd));
+
+         //  PetscLogFlops(user_event_flops);
+          PetscLogEventEnd(USER_EVENT, 0, 0, 0, 0);
+          PetscCall(PetscViewerDestroy(&fd));
+
+      }
+
+      else if (strcmp(extension, ".mtx") == 0) {
+          PetscLogEventRegister("Load Time",0, &USER_EVENT);
+          PetscLogEventBegin(USER_EVENT, 0, 0, 0, 0);
+
+          PetscCall(MatCreateFromMTX(&A, filein, aijonly, &n, &m));
+
+         //  PetscLogFlops(user_event_flops);
+          PetscLogEventEnd(USER_EVENT, 0, 0, 0, 0);
+
+          PetscCall(PetscFOpen(PETSC_COMM_WORLD, filein, "r", &file));
+          PetscCallExternal(mm_read_banner, file, &matcode);
+          PetscCallExternal(mm_write_banner, stdout, matcode);
+          PetscCallExternal(mm_read_mtx_crd_size, file, &M, &N, &NZ);
+          PetscCall(PetscFClose(PETSC_COMM_WORLD, file));
+      } else {
+          PetscCall(PetscPrintf(PETSC_COMM_WORLD, "Not MTX and NOT BIN.\n"));
+      }
+  }
+
   nz = NZ;
   m = M;
-  PetscCall(PetscFClose(PETSC_COMM_SELF, file));
   PetscCall(PetscPrintf(PETSC_COMM_WORLD, "Reading matrix completes.\n"));
   if (permute) {
     Mat Aperm;
@@ -65,7 +97,6 @@ int main(int argc, char **args)
     PetscCall(MatDestroy(&A));
     A = Aperm; /* Replace original operator with permuted version */
   }
-
   /* Matrix loaded. */
 
 
